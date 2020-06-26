@@ -14,6 +14,8 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'iconic/font/css/iconic-bootstrap.css' %}">
+
 
     <!-- Favicons -->
 <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -48,7 +50,7 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-        <a class="navbar-brand" href="">
+        <a class="navbar-brand" href="{% url 'home' %}">
           <img src="{% static 'logo.png' %}" class="d-inline-block align-top" height=30>
           Product Hunt
         </a>
@@ -57,7 +59,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
+
             {% if user.is_authenticated %}
+            <a class="nav-item nav-link" href="{% url 'create' %}">
+              <span class="iconic iconic-arrow-thick-right-line" title="arrow thick right line" aria-hidden="true">Create</span>
+            </a>
             <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}" onClick="">Log Out</a>
             <form id="logout" action="{% url 'logout' %}" method="POST">
               {% csrf_token %}
